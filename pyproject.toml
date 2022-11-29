@@ -4,13 +4,13 @@ version = "0.1.0"
 description = "difference-calculator for your files."
 authors = ["nickolay_kuzmin <nickolay.kuzmin2001@gmail.com>"]
 readme = "README.md"
-packages = [{include = "scripts"},]
+packages = [{include = "gendiff"},]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 
 [tool.poetry.scripts]
-gendiff = "scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff:main"
 
 [build-system]
 requires = ["poetry-core"]
