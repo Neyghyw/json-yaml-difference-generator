@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import argparse
+from ..gendiff import generate_diff
+from ..utils import load_jsons
 
 
 def main():
@@ -9,7 +11,9 @@ def main():
     parser.add_argument('first_file')
     parser.add_argument('second_file')
     parser.add_argument('-f', '--format', help='set format of output', required=False)
-    parser.parse_args()
+    args = parser.parse_args()
+    jsons = load_jsons(args.first_file, args.second_file)
+    print(generate_diff(*jsons))
 
 
 if __name__ == '__main__':
