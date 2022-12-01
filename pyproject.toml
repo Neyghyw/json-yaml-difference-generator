@@ -10,7 +10,7 @@ packages = [{include = "gendiff"},]
 python = "^3.8"
 
 [tool.poetry.scripts]
-gendiff = "gendiff.scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff_entry_point:main"
 
 [build-system]
 requires = ["poetry-core"]
