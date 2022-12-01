@@ -6,7 +6,9 @@ from gendiff.gendiff import generate_diff
 @pytest.fixture()
 def expected():
     with open('./fixtures/expected_diff', mode='r') as file:
-        return file.readlines()
+        expected = file.readlines()
+        expected = str.join('', expected)
+        return expected
 
 
 @pytest.fixture()
