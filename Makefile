@@ -1,6 +1,9 @@
 tests:
 	poetry run pytest
 
+lint:
+	poetry run flake8
+
 build:
 	poetry build
 
