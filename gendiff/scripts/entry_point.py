@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 import argparse
 from ..gendiff import generate_diff
-from ..utils import load_dicts_from_files
+from ..utils import handle_files
+from ..utils import handle_paths
 
 
 def main():
@@ -15,7 +16,8 @@ def main():
     parser.add_argument('second_file')
     parser.add_argument('-f', '--format', help='set format of output', required=False)  # noqa: E501
     args = parser.parse_args()
-    dicts = load_dicts_from_files(args.first_file, args.second_file)
+    paths = handle_paths(args.first_file, args.second_file)
+    dicts = handle_files(*paths)
     print(generate_diff(*dicts))
 
 
