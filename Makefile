@@ -1,6 +1,9 @@
 install:
 	poetry install
 
+package-uninstall:
+	pip uninstall hexlet-code
+
 package-install:
 	python3 -m pip install --user dist/*.whl
 
