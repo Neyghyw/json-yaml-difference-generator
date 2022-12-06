@@ -1,19 +1,22 @@
 #!/usr/bin/python3
 import argparse
 from ..gendiff import generate_diff
-from ..utils import load_jsons
+from ..utils import load_dicts_from_files
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='gendiff',
-                                     usage='gendiff [-h] [-f FORMAT] first_file second_file',
-                                     description='Compares two configuration files and shows a difference.')
+    parser_params = {
+        'prog': 'gendiff',
+        'usage': 'gendiff [-h] [-f FORMAT] first_file second_file',
+        'description': 'Compares two configuration files and shows a difference.'  # noqa: E501
+    }
+    parser = argparse.ArgumentParser(**parser_params)
     parser.add_argument('first_file')
     parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', help='set format of output', required=False)
+    parser.add_argument('-f', '--format', help='set format of output', required=False)  # noqa: E501
     args = parser.parse_args()
-    jsons = load_jsons(args.first_file, args.second_file)
-    print(generate_diff(*jsons))
+    dicts = load_dicts_from_files(args.first_file, args.second_file)
+    print(generate_diff(*dicts))
 
 
 if __name__ == '__main__':
