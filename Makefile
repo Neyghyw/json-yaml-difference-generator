@@ -1,6 +1,9 @@
 install:
 	poetry install
 
+package-install:
+	python3 -m pip install --user dist/*.whl
+
 test:
 	poetry run pytest
 
@@ -16,7 +19,7 @@ selfcheck:
 check:
 	make selfcheck test lint
 
-build: check
+build:
 	poetry build
 
 .PHONY: install test lint selfcheck check build
