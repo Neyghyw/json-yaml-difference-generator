@@ -5,7 +5,7 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 
 test:
-	poetry run pytest
+	poetry run pytest -vv
 
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
