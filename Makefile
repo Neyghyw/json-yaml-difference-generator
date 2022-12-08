@@ -1,9 +1,6 @@
 install:
 	poetry install
 
-package-uninstall:
-	pip uninstall hexlet-code
-
 package-install:
 	python3 -m pip install --user dist/*.whl
 
@@ -14,7 +11,7 @@ test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
 
 lint:
-	poetry run flake8 --exit-zero gendiff
+	poetry run flake8 gendiff
 
 selfcheck:
 	poetry check
