@@ -1,7 +1,7 @@
 def generate_diff(file1: dict, file2: dict):
-    keys = sorted({*file2.keys(), *file1.keys()})
+    keys = {*file2.keys(), *file1.keys()}
     diff_str = ""
-    for key in keys:
+    for key in sorted(keys):
         value1 = file1.get(key)
         value2 = file2.get(key)
         if value1 == value2:
