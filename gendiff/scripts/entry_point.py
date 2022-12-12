@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import argparse
-from ..gendiff import generate_diff
-from ..utils import handle_files
-from ..utils import handle_paths
+from ..gendiff import generate_diff, stringify
+from utils.from_files.utils import handle_files
+from utils.from_files.utils import handle_paths
 
 
 def main():
@@ -18,7 +18,8 @@ def main():
     args = parser.parse_args()
     paths = handle_paths(args.first_file, args.second_file)
     dicts = handle_files(*paths)
-    print(generate_diff(*dicts))
+    diff = generate_diff(*dicts)
+    print(stringify(diff))
 
 
 if __name__ == '__main__':
