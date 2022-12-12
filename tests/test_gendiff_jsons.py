@@ -1,6 +1,6 @@
 import pytest
-from gendiff.gendiff import generate_diff
-from gendiff.utils import load_jsons
+from gendiff.gendiff import generate_diff, stringify
+from gendiff.utils.from_files.utils import load_jsons
 
 
 @pytest.fixture
@@ -21,4 +21,5 @@ def json_files(dir_):
 
 @pytest.mark.parametrize(argvalues=['simple_jsons', 'deep_jsons'], argnames='dir_')
 def test_gendiff(json_files, json_expected):
-    assert generate_diff(*json_files) == json_expected
+    diff = generate_diff(*json_files)
+    assert stringify(diff) == json_expected
