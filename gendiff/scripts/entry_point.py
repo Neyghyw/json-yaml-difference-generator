@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import argparse
-from modules.gendiff import generate_diff, stringify
-from utils.file_utils import handle_files
-from utils.file_utils import handle_paths
+from gendiff.modules.gendiff import generate_diff, stringify
+from gendiff.utils.file_utils import handle_files
+from gendiff.utils.file_utils import handle_paths
 
 
 def main():
