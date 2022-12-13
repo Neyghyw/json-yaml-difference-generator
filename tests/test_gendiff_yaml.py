@@ -1,6 +1,7 @@
 import pytest
-from gendiff.gendiff import generate_diff, stringify
-from gendiff.utils.from_files.utils import load_yamls
+from gendiff.modules.gendiff import generate_diff
+from gendiff.modules.gendiff import stringify
+from gendiff.utils.file_utils import load_yamls
 
 
 @pytest.fixture
