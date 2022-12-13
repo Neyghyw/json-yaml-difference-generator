@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import argparse
-from ..gendiff import generate_diff, stringify
-from utils.from_files.utils import handle_files
-from utils.from_files.utils import handle_paths
+from modules.gendiff import generate_diff, stringify
+from utils.file_utils import handle_files
+from utils.file_utils import handle_paths
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
     parser = argparse.ArgumentParser(**parser_params)
     parser.add_argument('first_file')
     parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', help='set format of output', required=False)  # noqa: E501
+    parser.add_argument('-f', '--format', help='set format of output', default='stylish', required=False)  # noqa: E501
     args = parser.parse_args()
     paths = handle_paths(args.first_file, args.second_file)
     dicts = handle_files(*paths)
