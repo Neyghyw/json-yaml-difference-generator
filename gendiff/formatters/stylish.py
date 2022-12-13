@@ -6,7 +6,6 @@ def make_stylish(value, char=' ', spaces=1):
         deep_space += spaces
         val_pad = char * deep_space
         bracket_pad = char * (deep_space - spaces)
-
         strings = [f'{val_pad}{key}: {walk(val, deep_space+3)}\n'
                    for key, val in item.items()]
         strings = str.join("", strings) + bracket_pad
