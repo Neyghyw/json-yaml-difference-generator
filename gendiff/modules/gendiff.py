@@ -1,4 +1,4 @@
-from gendiff.formatters.stylish import make_stylish
+from gendiff.formatters import formatters_map
 
 
 def make_key_map(table, dict1, dict2):
@@ -12,20 +12,20 @@ def make_key_map(table, dict1, dict2):
         table[key] = items
 
 
-def generate_diff(dict1, dict2):
+def create_diff(dict1, dict2):
     diff = dict()
     key_map = dict()
     make_key_map(key_map, dict1, dict2)
     for key, values in key_map.items():
         if len(values) == 1:
-            status = '-' if key in dict1.keys()\
+            status = '-' if key in dict1.keys() \
                 else '+'
             values = values[0]
         else:
             first, second = values
             if isinstance(first, dict) and isinstance(second, dict):
                 status = 'dicts'
-                values = generate_diff(first, second)
+                values = create_diff(first, second)
             elif first == second:
                 status = 'equal'
                 values = first
@@ -36,5 +36,8 @@ def generate_diff(dict1, dict2):
     return diff
 
 
-def stringify(diff: dict):
-    return make_stylish(diff)
+def generate_diff(dict1, dict2, format_='stylish'):
+    diff = create_diff(dict1, dict2)
+    formatter = formatters_map.get(format_, 'stylish')
+    formatted_diff = formatter(diff)
+    return formatted_diff
