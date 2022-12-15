@@ -6,19 +6,18 @@ from os.path import exists
 from yaml import CLoader as Loader
 
 
-def handle_files(*args):
+def get_dicts_from_files(*args):
     paths = str.join('\n', args)
-    extensions = re.findall(r'(?<=\.)json|(?<=ya)ml|(?<=y)ml$', paths)
+    extension_regular = r'(?<=\.)json|(?<=ya)ml|(?<=y)ml$'
+    extensions = re.findall(extension_regular, paths)
     if len(extensions) <= 1:
         raise ImportError('Unknown file extension.')
-
-    extensions = list(set(extensions))
-    if len(extensions) > 1:
+    elif len(set(extensions)) > 1:
         raise ImportError('Incompatible files extensions.')
+
     elif 'json' in extensions:
         return load_jsons(*args)
-    else:
-        return load_yamls(*args)
+    return load_yamls(*args)
 
 
 def handle_paths(*args):

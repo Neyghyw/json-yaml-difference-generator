@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import argparse
-from gendiff.modules.gendiff import generate_diff, stringify
-from gendiff.utils.file_utils import handle_files
+from gendiff.modules.gendiff import generate_diff
+from gendiff.utils.file_utils import get_dicts_from_files
 from gendiff.utils.file_utils import handle_paths
 
 
@@ -17,9 +17,9 @@ def main():
     parser.add_argument('-f', '--format', help='set format of output', default='stylish', required=False)  # noqa: E501
     args = parser.parse_args()
     paths = handle_paths(args.first_file, args.second_file)
-    dicts = handle_files(*paths)
-    diff = generate_diff(*dicts)
-    print(stringify(diff))
+    dicts = get_dicts_from_files(*paths)
+    diff = generate_diff(*dicts, args.format)
+    print(diff)
 
 
 if __name__ == '__main__':

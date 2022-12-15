@@ -1,12 +1,11 @@
 import pytest
-
 from gendiff.modules.gendiff import generate_diff
 from gendiff.utils.file_utils import load_yamls
 
 
 @pytest.fixture
-def yaml_expected(dir_):
-    path = f'tests/fixtures/yamls/{dir_}/expected_diff'
+def expected_diff():
+    path = f'tests/fixtures/plain_format/expected_diff'
     with open(file=path, mode='r') as file:
         expected = file.readlines()
         expected = str.join('', expected)
@@ -20,6 +19,7 @@ def yaml_files(dir_):
     return load_yamls(path1, path2)
 
 
-@pytest.mark.parametrize(argvalues=['simple_yamls', 'deep_yamls'], argnames='dir_')
-def test_gendiff(yaml_files, yaml_expected):
-    assert generate_diff(*yaml_files, format_='stylish') == yaml_expected
+@pytest.mark.parametrize(argvalues=['deep_yamls'], argnames='dir_')
+def test_gendiff(yaml_files, expected_diff):
+    assert generate_diff(*yaml_files, format_='plain') == expected_diff
+
