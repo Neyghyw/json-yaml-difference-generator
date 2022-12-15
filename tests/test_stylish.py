@@ -1,7 +1,5 @@
 import pytest
 from gendiff.modules.gendiff import generate_diff
-from gendiff.utils.file_utils import load_jsons
-from gendiff.utils.file_utils import load_yamls
 
 
 @pytest.fixture
