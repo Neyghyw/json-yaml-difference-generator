@@ -4,3 +4,13 @@ def format_wrong_words(value: str):
     value = value.replace('None', 'null')
     value = value.replace(': \n', ':\n')
     return value
+
+
+def format_status(status):
+    if status == '+':
+        return 'added'
+    if status == '-':
+        return 'removed'
+    if status == 'unequal':
+        return 'updated'
+    return status
