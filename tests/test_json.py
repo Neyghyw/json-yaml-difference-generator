@@ -4,7 +4,7 @@ from gendiff.modules.gendiff import generate_diff
 
 @pytest.fixture
 def expected_diff():
-    path = f'tests/fixtures/json/expected_diff'
+    path = 'tests/fixtures/json/expected_diff'
     with open(file=path, mode='r') as file:
         expected = file.readlines()
         expected = str.join('', expected)

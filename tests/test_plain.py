@@ -1,9 +1,10 @@
 import pytest
 from gendiff.modules.gendiff import generate_diff
 
+
 @pytest.fixture
 def expected_diff():
-    path = f'tests/fixtures/plain/expected_diff'
+    path = 'tests/fixtures/plain/expected_diff'
     with open(file=path, mode='r') as file:
         expected = file.readlines()
         expected = str.join('', expected)
