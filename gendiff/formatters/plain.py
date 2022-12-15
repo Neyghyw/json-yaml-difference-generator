@@ -1,4 +1,4 @@
-from gendiff.utils.format_utils import format_wrong_words
+from gendiff.utils.format_utils import format_wrong_words, format_status
 
 
 def make_plain(diff):
@@ -10,32 +10,21 @@ def make_plain(diff):
 def handle_diff(diff, parent=None):
     plain_diff = []
     for key, meta in diff.items():
-        status, value = meta.values()
+        status, values = meta.values()
         status = format_status(status)
         property_name = f'{parent}.{key}' if parent else key
         text = f"Property '{property_name}' was {status}"
         if status == 'added':
-            value = format_value(value)
+            value = format_value(values)
             plain_diff.append(f"{text} with value: {value}")
         elif status == 'removed':
             plain_diff.append(text)
         elif status == 'updated':
-            value1, value2 = [format_value(v) for v in value]
+            value1, value2 = [format_value(v) for v in values]
             plain_diff.append(f"{text}. From {value1} to {value2}")
         elif status == 'dicts':
-            value = meta['values']
-            plain_diff.extend(handle_diff(value, parent=property_name))
+            plain_diff.extend(handle_diff(values, parent=property_name))
     return plain_diff
-
-
-def format_status(status):
-    if status == '+':
-        return 'added'
-    if status == '-':
-        return 'removed'
-    if status == 'unequal':
-        return 'updated'
-    return status
 
 
 def format_value(value):
