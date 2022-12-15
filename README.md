@@ -5,4 +5,4 @@
 [![Python CI](https://github.com/Neyghyw/python-project-50/actions/workflows/python-app.yml/badge.svg)](https://github.com/Neyghyw/python-project-50/actions/workflows/python-app.yml)
 
 Работа утилиты с JSON и YAML:
-[![asciicast](https://asciinema.org/a/545337.svg)](https://asciinema.org/a/545337)
+[![asciicast](https://asciinema.org/a/545805.svg)](https://asciinema.org/a/545805)
