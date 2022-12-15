@@ -1,4 +1,5 @@
 from gendiff.formatters import formatters_map
+from gendiff.utils.file_utils import handle_paths, get_dicts_from_files
 
 
 def make_key_map(table, dict1, dict2):
@@ -36,8 +37,10 @@ def create_diff(dict1, dict2):
     return diff
 
 
-def generate_diff(dict1, dict2, format_='stylish'):
-    diff = create_diff(dict1, dict2)
+def generate_diff(path1, path2, format_='stylish'):
+    paths = handle_paths(path1, path2)
+    dicts = get_dicts_from_files(*paths)
+    diff = create_diff(*dicts)
     formatter = formatters_map.get(format_, 'stylish')
     formatted_diff = formatter(diff)
     return formatted_diff
