@@ -8,8 +8,9 @@ from yaml import CLoader as Loader
 
 def get_dicts_from_files(*args):
     paths = str.join('\n', args)
-    extension_regular = r'(?<=\.)json|(?<=ya)ml|(?<=y)ml$'
+    extension_regular = r'(?<=\.)json|(?<=ya)ml|(?<=y)ml'
     extensions = re.findall(extension_regular, paths)
+    print('EXTENSIONS:', extensions)
     if len(extensions) <= 1:
         raise ImportError('Unknown file extension.')
     elif len(set(extensions)) > 1:
