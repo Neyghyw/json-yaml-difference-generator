@@ -44,6 +44,6 @@ jobs:
     - run: yarn build
     - uses: paambaati/codeclimate-action@v2.2.4
       env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        CC_TEST_REPORTER_ID: 352d33c58b079fa7946420b96aa228f41df7a6167bbec287fb5204119b3bc727
       with:
         coverageCommand: yarn coverage
