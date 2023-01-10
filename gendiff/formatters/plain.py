@@ -28,7 +28,7 @@ def handle_diff(diff, parent=None):
 
 
 def format_value(value):
-    complex_types = [type(list()), type(dict()), type(tuple()), type(set())]
+    complex_types = [type(list()), type(dict())]
     if type(value) in complex_types:
         return '[complex value]'
     elif value == '':

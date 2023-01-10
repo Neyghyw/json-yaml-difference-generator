@@ -1,23 +1,24 @@
 import json
 import yaml
-import re
 import os
 from os.path import exists
 from yaml import CLoader as Loader
 
 
 def get_dicts_from_files(*args):
-    paths = str.join('\n', args)
-    extension_regular = r'(?<=\.)json|(?<=ya)ml|(?<=y)ml'
-    extensions = re.findall(extension_regular, paths)
+    extensions = [path.split('.')[-1] for path in args]
     if len(extensions) <= 1:
         raise ImportError('Unknown file extension.')
-    elif len(set(extensions)) > 1:
+    elif len(set(extensions)) > 1 and set(extensions) != {'yml', 'yaml'}:
         raise ImportError('Incompatible files extensions.')
 
     elif 'json' in extensions:
         return load_jsons(*args)
-    return load_yamls(*args)
+    elif 'yaml' in extensions \
+            or 'yml' in extensions:
+        return load_yamls(*args)
+    else:
+        raise ImportError(f'{extensions} is unsupported file format(s).')
 
 
 def handle_paths(*args):
