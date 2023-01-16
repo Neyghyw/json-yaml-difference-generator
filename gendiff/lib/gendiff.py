@@ -6,23 +6,23 @@ def create_diff(dict1, dict2):
     diff = dict()
     sorted_keys = sorted({*dict1.keys(), *dict2.keys()})
     for key in sorted_keys:
-        values = [table[key] for table in [dict1, dict2] if key in table]
-        if len(values) == 1:
+        value = [table[key] for table in [dict1, dict2] if key in table]
+        if len(value) == 1:
             status = 'removed' if key in dict1.keys() \
                 else 'added'
-            values = values[0]
+            value = value[0]
         else:
-            first, second = values
+            first, second = value
             if isinstance(first, dict) and isinstance(second, dict):
                 status = 'nested'
-                values = create_diff(first, second)
+                value = create_diff(first, second)
             elif first == second:
                 status = 'equal'
-                values = first
+                value = first
             else:
                 status = 'updated'
-                values = first, second
-        diff[key] = {'status': status, 'values': values}
+                value = first, second
+        diff[key] = {'status': status, 'value': value}
     return diff
 
 

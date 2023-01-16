@@ -20,4 +20,5 @@ def paths(type_):
 
 @pytest.mark.parametrize(argvalues=['json', 'yaml'], argnames='type_')
 def test_gendiff(paths, expected_diff):
+    print(generate_diff(*paths, format_='json'))
     assert generate_diff(*paths, format_='json') == expected_diff

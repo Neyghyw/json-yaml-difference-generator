@@ -1,45 +1,45 @@
 {
     "common": {
         "status": "nested",
-        "values": {
+        "value": {
             "follow": {
                 "status": "added",
-                "values": false
+                "value": false
             },
             "setting1": {
                 "status": "equal",
-                "values": "Value 1"
+                "value": "Value 1"
             },
             "setting2": {
                 "status": "removed",
-                "values": 200
+                "value": 200
             },
             "setting3": {
                 "status": "updated",
-                "values": [
+                "value": [
                     true,
                     null
                 ]
             },
             "setting4": {
                 "status": "added",
-                "values": "blah blah"
+                "value": "blah blah"
             },
             "setting5": {
                 "status": "added",
-                "values": {
+                "value": {
                     "key5": "value5"
                 }
             },
             "setting6": {
                 "status": "nested",
-                "values": {
+                "value": {
                     "doge": {
                         "status": "nested",
-                        "values": {
+                        "value": {
                             "wow": {
                                 "status": "updated",
-                                "values": [
+                                "value": [
                                     "",
                                     "so much"
                                 ]
@@ -48,11 +48,11 @@
                     },
                     "key": {
                         "status": "equal",
-                        "values": "value"
+                        "value": "value"
                     },
                     "ops": {
                         "status": "added",
-                        "values": "vops"
+                        "value": "vops"
                     }
                 }
             }
@@ -60,21 +60,21 @@
     },
     "group1": {
         "status": "nested",
-        "values": {
+        "value": {
             "baz": {
                 "status": "updated",
-                "values": [
+                "value": [
                     "bas",
                     "bars"
                 ]
             },
             "foo": {
                 "status": "equal",
-                "values": "bar"
+                "value": "bar"
             },
             "nest": {
                 "status": "updated",
-                "values": [
+                "value": [
                     {
                         "key": "value"
                     },
@@ -85,7 +85,7 @@
     },
     "group2": {
         "status": "removed",
-        "values": {
+        "value": {
             "abc": 12345,
             "deep": {
                 "id": 45
@@ -94,7 +94,7 @@
     },
     "group3": {
         "status": "added",
-        "values": {
+        "value": {
             "deep": {
                 "id": {
                     "number": 45
