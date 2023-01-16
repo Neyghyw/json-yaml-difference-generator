@@ -17,7 +17,7 @@ def stringify(item, spaces=0, is_diff=False, barchar=' '):
     pad = barchar * (spaces + 1)
 
     if not is_diff:
-        strings = [f'{pad}   {key}: {stringify(val, spaces+INDENT)}\n'
+        strings = [f'{pad}   {key}: {stringify(val, spaces + INDENT)}\n'
                    for key, val in item.items()]
     else:
         strings = []
@@ -25,13 +25,13 @@ def stringify(item, spaces=0, is_diff=False, barchar=' '):
             status = meta['status']
             value = meta['value']
             if status == 'updated':
-                first, second = [stringify(val, spaces+INDENT) for val in value]
+                first, second = [stringify(v, spaces + INDENT) for v in value]
                 strings += f'{pad} - {key}: {first}\n' \
                            f'{pad} + {key}: {second}\n'
             else:
                 is_nested = status == 'nested'
                 status = status_map.get(status, barchar)
-                value = stringify(value, spaces+INDENT, is_nested)
+                value = stringify(value, spaces + INDENT, is_nested)
                 strings += f'{pad} {status} {key}: {value}\n'
     strings = str.join('', strings) + bracket_pad
     return '{\n' + strings + '}'
