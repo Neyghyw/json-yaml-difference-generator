@@ -1,5 +1,8 @@
 from gendiff.utils.format_utils import format_wrong_words
 
+INDENT = 4
+status_map = {'added': '+', 'removed': '-'}
+
 
 def make_stylish(diff):
     stringifyed = stringify(diff, is_diff=True)
@@ -14,21 +17,21 @@ def stringify(item, spaces=0, is_diff=False, barchar=' '):
     pad = barchar * (spaces + 1)
 
     if not is_diff:
-        strings = [f'{pad}   {key}: {stringify(val, spaces + 4)}\n'
+        strings = [f'{pad}   {key}: {stringify(val, spaces + INDENT)}\n'
                    for key, val in item.items()]
     else:
         strings = []
         for key, meta in item.items():
             status = meta['status']
             value = meta['values']
-            if status == 'unequal':
-                first, second = [stringify(val, spaces + 4) for val in value]
+            if status == 'updated':
+                first, second = [stringify(val, spaces + INDENT) for val in value]
                 strings += f'{pad} - {key}: {first}\n' \
                            f'{pad} + {key}: {second}\n'
             else:
-                is_dicts = status == 'dicts'
-                value = stringify(value, spaces + 4, is_dicts)
-                status = status if status in ['-', '+'] else barchar
+                is_nested = status == 'nested'
+                value = stringify(value, spaces + INDENT, is_nested)
+                status = status_map.get(status, barchar)
                 strings += f'{pad} {status} {key}: {value}\n'
-    strings = str.join("", strings) + bracket_pad
+    strings = str.join('', strings) + bracket_pad
     return '{\n' + strings + '}'

@@ -1,4 +1,5 @@
 import json
+from pprint import pprint
 
 
 def make_json(diff):

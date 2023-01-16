@@ -1,9 +1,9 @@
 {
     "common": {
-        "status": "dicts",
+        "status": "nested",
         "values": {
             "follow": {
-                "status": "+",
+                "status": "added",
                 "values": false
             },
             "setting1": {
@@ -11,34 +11,34 @@
                 "values": "Value 1"
             },
             "setting2": {
-                "status": "-",
+                "status": "removed",
                 "values": 200
             },
             "setting3": {
-                "status": "unequal",
+                "status": "updated",
                 "values": [
                     true,
                     null
                 ]
             },
             "setting4": {
-                "status": "+",
+                "status": "added",
                 "values": "blah blah"
             },
             "setting5": {
-                "status": "+",
+                "status": "added",
                 "values": {
                     "key5": "value5"
                 }
             },
             "setting6": {
-                "status": "dicts",
+                "status": "nested",
                 "values": {
                     "doge": {
-                        "status": "dicts",
+                        "status": "nested",
                         "values": {
                             "wow": {
-                                "status": "unequal",
+                                "status": "updated",
                                 "values": [
                                     "",
                                     "so much"
@@ -51,7 +51,7 @@
                         "values": "value"
                     },
                     "ops": {
-                        "status": "+",
+                        "status": "added",
                         "values": "vops"
                     }
                 }
@@ -59,10 +59,10 @@
         }
     },
     "group1": {
-        "status": "dicts",
+        "status": "nested",
         "values": {
             "baz": {
-                "status": "unequal",
+                "status": "updated",
                 "values": [
                     "bas",
                     "bars"
@@ -73,7 +73,7 @@
                 "values": "bar"
             },
             "nest": {
-                "status": "unequal",
+                "status": "updated",
                 "values": [
                     {
                         "key": "value"
@@ -84,7 +84,7 @@
         }
     },
     "group2": {
-        "status": "-",
+        "status": "removed",
         "values": {
             "abc": 12345,
             "deep": {
@@ -93,7 +93,7 @@
         }
     },
     "group3": {
-        "status": "+",
+        "status": "added",
         "values": {
             "deep": {
                 "id": {

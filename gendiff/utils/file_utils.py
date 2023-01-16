@@ -1,24 +1,27 @@
 import json
-import yaml
 import os
-from os.path import exists
+import yaml
+from os.path import exists, splitext
+
 from yaml import CLoader as Loader
 
 
-def get_dicts_from_files(*args):
-    extensions = [path.split('.')[-1] for path in args]
-    if len(extensions) <= 1:
-        raise ImportError('Unknown file extension.')
-    elif len(set(extensions)) > 1 and set(extensions) != {'yml', 'yaml'}:
-        raise ImportError('Incompatible files extensions.')
+def load_content(path):
+    extension = splitext(path)[-1]
+    if extension not in ['.json', '.yml', '.yaml']:
+        raise ImportError(f'File {path} had unsupported extension.')
+    with open(path) as file:
+        return parse_file(file, extension)
 
-    elif 'json' in extensions:
-        return load_jsons(*args)
-    elif 'yaml' in extensions \
-            or 'yml' in extensions:
-        return load_yamls(*args)
-    else:
-        raise ImportError(f'{extensions} is unsupported file format(s).')
+
+def parse_file(file, extension):
+    try:
+        if extension == '.json':
+            return json.load(file)
+        elif extension in ['.yml', '.yaml']:
+            return yaml.load(file, Loader)
+    except Exception as ex:
+        raise ImportError(ex)
 
 
 def handle_paths(*args):
@@ -27,19 +30,3 @@ def handle_paths(*args):
         if not exists(path):
             handled_paths[index] = os.getcwd() + '/' + path
     return handled_paths
-
-
-def load_jsons(*args):
-    try:
-        jsons = [json.load(open(file=path, mode='r')) for path in args]
-        return jsons
-    except Exception as ex:
-        raise ImportError(ex)
-
-
-def load_yamls(*args):
-    try:
-        yamls = [yaml.load(open(file=path, mode='r'), Loader) for path in args]
-        return yamls
-    except Exception as ex:
-        raise ImportError(ex)
