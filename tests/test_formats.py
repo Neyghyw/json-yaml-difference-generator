@@ -3,8 +3,8 @@ from gendiff.lib.gendiff import generate_diff
 
 
 @pytest.fixture
-def expected_diff():
-    path = 'tests/fixtures/plain/expected_diff'
+def expected_diff(format_):
+    path = f'tests/fixtures/{format_}/expected_diff'
     with open(file=path, mode='r') as file:
         expected = file.readlines()
         expected = str.join('', expected)
@@ -18,7 +18,8 @@ def paths(type_):
     return path1, path2
 
 
+@pytest.mark.parametrize(argvalues=['json', 'plain', 'stylish'], argnames='format_')
 @pytest.mark.parametrize(argvalues=['json', 'yaml'], argnames='type_')
-def test_gendiff(paths, expected_diff):
-    print(generate_diff(*paths, format_='plain'))
-    assert generate_diff(*paths, format_='plain') == expected_diff
+def test_gendiff(paths, expected_diff, format_):
+    print(generate_diff(*paths, format_=format_))
+    assert generate_diff(*paths, format_=format_) == expected_diff
