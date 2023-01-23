@@ -11,15 +11,18 @@ def load_content(path):
     if extension not in ['.json', '.yml', '.yaml']:
         raise ImportError(f'File {path} had unsupported extension.')
     with open(path) as file:
-        return parse_file(file, extension)
+        content = file.read()
+        return content
 
 
-def parse_file(file, extension):
+def parse_content(content):
     try:
-        if extension == '.json':
-            return json.load(file)
-        elif extension in ['.yml', '.yaml']:
-            return yaml.load(file, Loader)
+        if is_json(content):
+            return json.loads(content)
+        elif is_yaml(content):
+            return yaml.load(content, Loader)
+        else:
+            raise 'Unsupported file.'
     except Exception as ex:
         raise ImportError(ex)
 
@@ -30,3 +33,19 @@ def handle_paths(*args):
         if not exists(path):
             handled_paths[index] = os.getcwd() + '/' + path
     return handled_paths
+
+
+def is_json(content):
+    try:
+        json.loads(content)
+    except ValueError:
+        return False
+    return True
+
+
+def is_yaml(content):
+    try:
+        yaml.load(content, Loader)
+    except ValueError:
+        return False
+    return True

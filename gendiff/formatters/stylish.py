@@ -1,7 +1,7 @@
 from gendiff.utils.format_utils import format_wrong_words
 
 INDENT = 4
-status_map = {'added': '+', 'removed': '-'}
+STATUS_MAP = {'added': '+', 'removed': '-'}
 
 
 def make_stylish(diff):
@@ -30,7 +30,7 @@ def stringify(item, spaces=0, is_diff=False, barchar=' '):
                            f'{pad} + {key}: {second}\n'
             else:
                 is_nested = status == 'nested'
-                status = status_map.get(status, barchar)
+                status = STATUS_MAP.get(status, barchar)
                 value = stringify(value, spaces + INDENT, is_nested)
                 strings += f'{pad} {status} {key}: {value}\n'
     strings = str.join('', strings) + bracket_pad
