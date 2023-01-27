@@ -19,10 +19,10 @@
 Работа утилиты с JSON и YAML:
 [![asciicast](https://asciinema.org/a/545837.svg)](https://asciinema.org/a/545837)
 
-# Установка
-Установка пакета производится командой ```make build package-install```, находясь в корневой директории проекта
+# Installation
+Install package command ```make build package-install```, develop in project root directory
 
-После установки станут доступна команда для запуска вычислителя отличий gendiff:
+Once installed, the command to calculate gendiff differences becomes available:
 ```
 gendiff
 ```
