@@ -30,7 +30,7 @@ def create_diff(dict1, dict2):
 def generate_diff(path1, path2, format_='stylish'):
     paths = handle_paths(path1, path2)
     contents = [load_content(path) for path in paths]
-    dicts = [parse_content(content) for content in contents]
+    dicts = [parse_content(*content) for content in contents]
     diff = create_diff(*dicts)
     formatter = formatters_map.get(format_, 'stylish')
     formatted_diff = formatter(diff)
