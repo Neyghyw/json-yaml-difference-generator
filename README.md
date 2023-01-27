@@ -16,7 +16,7 @@
 ### Python CI:
 [![Python CI](https://github.com/Neyghyw/python-project-50/actions/workflows/python-app.yml/badge.svg)](https://github.com/Neyghyw/python-project-50/actions/workflows/python-app.yml)
 
-Работа утилиты с JSON и YAML:
+Utility work with JSON and YAML:
 [![asciicast](https://asciinema.org/a/545837.svg)](https://asciinema.org/a/545837)
 
 # Installation
